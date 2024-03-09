@@ -1,0 +1,10 @@
+SELECT 
+        D.rating,
+        SUM(A.amount) AS total_amount,
+        COUNT (D.rating) AS total_movie_count
+FROM payment A
+JOIN rental B ON A.rental_id = B.rental_id
+JOIN inventory C ON B.inventory_id = C.inventory_id
+JOIN film D ON C.film_id = D.film_id
+GROUP BY D.rating
+ORDER BY total_amount DESC;
